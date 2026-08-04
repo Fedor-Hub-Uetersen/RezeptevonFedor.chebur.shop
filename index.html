@@ -189,16 +189,9 @@
             margin-bottom: 50px;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
         .section-title {
+            text-align: center;
+            margin-bottom: 30px;
             font-size: 2rem;
             color: var(--text-main);
         }
@@ -227,10 +220,15 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            display: none;
+            background: var(--bg-body);
+            cursor: pointer;
+            transition: opacity 0.2s;
         }
 
-        /* ВИДЕОПЛЕЕР В КАРТОЧКАХ ИСТОРИЙ */
+        .card-img:hover {
+            opacity: 0.9;
+        }
+
         .card-video {
             width: 100%;
             height: 220px;
@@ -310,65 +308,41 @@
             font-size: 1.05rem;
         }
 
-        .modal {
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ УВЕЛИЧЕНИЯ ФОТО */
+        .image-modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 3000;
+            padding-top: 50px;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background-color: rgba(0, 0, 0, 0.85);
             justify-content: center;
             align-items: center;
-            z-index: 2000;
         }
 
-        .modal-content {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            color: var(--text-main);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        .image-modal-content {
+            max-width: 85%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
         }
 
-        .close-btn {
+        .image-modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.2rem;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
-            border: none;
-            background: none;
-            color: var(--text-desc);
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--gray);
-            border-radius: 6px;
-            background: var(--bg-body);
-            color: var(--text-main);
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 90px;
+        .image-modal-close:hover {
+            color: var(--primary);
         }
 
         footer {
@@ -394,10 +368,6 @@
             }
             .hero h1 {
                 font-size: 2rem;
-            }
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
             }
         }
     </style>
@@ -452,17 +422,14 @@
             </div>
         </section>
 
-        <!-- РЕЦЕПТЫ -->
+        <!-- 9 КАРТОЧЕК РЕЦЕПТОВ С КЛИКАБЕЛЬНЫМИ ФОТО -->
         <section id="recipes">
-            <div class="section-header">
-                <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
-                <button class="btn" onclick="openRecipeModal()" id="add-recipe-btn">+ Добавить рецепт</button>
-            </div>
-
-            <div class="grid" id="recipesGrid">
+            <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
+            <div class="grid">
                 
+                <!-- 1 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-1.jpg" alt="Рецепт 1" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Завтрак • Низкий ГИ</span>
@@ -473,8 +440,9 @@
                     </div>
                 </div>
 
+                <!-- 2 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-2.jpg" alt="Рецепт 2" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Обеды</span>
@@ -485,8 +453,9 @@
                     </div>
                 </div>
 
+                <!-- 3 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-3.jpg" alt="Рецепт 3" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Десерты</span>
@@ -497,73 +466,79 @@
                     </div>
                 </div>
 
+                <!-- 4 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-4.jpg" alt="Рецепт 4" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №4</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- 5 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-5.jpg" alt="Рецепт 5" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №5</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- 6 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-6.jpg" alt="Рецепт 6" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №6</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- 7 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-7.jpg" alt="Рецепт 7" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №7</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- 8 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-8.jpg" alt="Рецепт 8" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №8</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- 9 -->
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <img src="recipe-9.jpg" alt="Рецепт 9" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №9</span>
-                            <h3 class="card-title">Место для вашего рецепта</h3>
-                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                            <h3 class="card-title">Новое блюдо от Фёдора</h3>
+                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
@@ -572,7 +547,7 @@
             </div>
         </section>
 
-        <!-- КУЛИНАРНЫЕ ИСТОРИИ С ВИДЕОПЛЕЕРАМИ ВМЕСТО КНОПОК -->
+        <!-- КУЛИНАРНЫЕ ИСТОРИИ -->
         <section id="stories">
             <h2 class="section-title" id="stories-title">Кулинарные истории</h2>
             <div class="grid">
@@ -610,31 +585,10 @@
 
     </main>
 
-    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ДОБАВЛЕНИЯ РЕЦЕПТА -->
-    <div class="modal" id="recipeModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeRecipeModal()">✕</button>
-            <h3 id="modal-heading" style="margin-bottom: 20px; color: var(--primary);">Добавить новый рецепт</h3>
-            <form id="recipeForm" onsubmit="addNewRecipe(event)">
-                <div class="form-group">
-                    <label id="label-title">Название блюда</label>
-                    <input type="text" id="recipeTitleInput" required placeholder="Например: Творожная запеканка">
-                </div>
-                <div class="form-group">
-                    <label id="label-tag">Категория / Тег</label>
-                    <input type="text" id="recipeTagInput" required placeholder="Например: Завтрак • Без сахара">
-                </div>
-                <div class="form-group">
-                    <label id="label-desc">Описание / Рецепт</label>
-                    <textarea id="recipeDescInput" required placeholder="Краткое описание или шаги приготовления..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label id="label-img">Фото блюда</label>
-                    <input type="file" id="recipeImageInput" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" id="btn-save">Опубликовать рецепт</button>
-            </form>
-        </div>
+    <!-- ОКНО ДЛЯ УВЕЛИЧЕНИЯ ФОТООТЧЕТА -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImage">
     </div>
 
     <footer>
@@ -658,46 +612,17 @@
             }
         }
 
-        function openRecipeModal() {
-            document.getElementById('recipeModal').style.display = 'flex';
+        // Функции для увеличения фото при клике
+        function openImageModal(src) {
+            if (!src) return;
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = src;
         }
 
-        function closeRecipeModal() {
-            document.getElementById('recipeModal').style.display = 'none';
-        }
-
-        function addNewRecipe(e) {
-            e.preventDefault();
-            const title = document.getElementById('recipeTitleInput').value;
-            const tag = document.getElementById('recipeTagInput').value;
-            const desc = document.getElementById('recipeDescInput').value;
-            const imageFile = document.getElementById('recipeImageInput').files[0];
-
-            if (imageFile) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const imageUrl = event.target.result;
-                    const grid = document.getElementById('recipesGrid');
-                    
-                    const newCard = document.createElement('div');
-                    newCard.className = 'card';
-                    newCard.innerHTML = `
-                        <img src="${imageUrl}" alt="${title}" class="card-img" style="display: block;">
-                        <div class="card-content">
-                            <div>
-                                <span class="tag">${tag}</span>
-                                <h3 class="card-title">${title}</h3>
-                                <p class="card-desc">${desc}</p>
-                            </div>
-                            <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
-                        </div>
-                    `;
-                    grid.prepend(newCard);
-                    closeRecipeModal();
-                    document.getElementById('recipeForm').reset();
-                }
-                reader.readAsDataURL(imageFile);
-            }
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
         }
 
         const translations = {
@@ -713,13 +638,6 @@
                 authorTitle: "Об авторе — Фёдор",
                 authorDesc: "Приветствую на моей кухне! Этот сайт задуман как уютный уголок, где я делюсь проверенными рецептами полезных блюд, личным опытом поддержания формы и теплыми жизненными историями. Располагайтесь поудобнее, давайте готовить вместе с пользой и удовольствием!",
                 recipesTitle: "Полезные рецепты",
-                addRecipeBtn: "+ Добавить рецепт",
-                modalHeading: "Добавить новый рецепт",
-                labelTitle: "Название блюда",
-                labelTag: "Категория / Тег",
-                labelDesc: "Описание / Рецепт",
-                labelImg: "Фото блюда",
-                btnSave: "Опубликовать рецепт",
                 footerText: "© 2026 Записки на кухне от Фёдора. Все права защищены."
             },
             de: {
@@ -734,13 +652,6 @@
                 authorTitle: "Über den Autor — Fedor",
                 authorDesc: "Willkommen in meiner Küche! Diese Website ist ein gemütlicher Ort, an dem ich bewährte Rezepte für gesunde Gerichte, persönliche Erfahrungen und herzerwärmende Geschichten teile. Machen Sie es sich bequem!",
                 recipesTitle: "Gesunde Rezepte",
-                addRecipeBtn: "+ Rezept hinzufügen",
-                modalHeading: "Neues Rezept hinzufügen",
-                labelTitle: "Gericht Name",
-                labelTag: "Kategorie / Tag",
-                labelDesc: "Beschreibung / Rezept",
-                labelImg: "Gericht Foto",
-                btnSave: "Rezept veröffentlichen",
                 footerText: "© 2026 Födors Küchennotizen. Alle Rechte vorbehalten."
             }
         };
@@ -758,13 +669,6 @@
             document.getElementById('author-title').innerText = t.authorTitle;
             document.getElementById('author-desc').innerText = t.authorDesc;
             document.getElementById('recipes-title').innerText = t.recipesTitle;
-            document.getElementById('add-recipe-btn').innerText = t.addRecipeBtn;
-            document.getElementById('modal-heading').innerText = t.modalHeading;
-            document.getElementById('label-title').innerText = t.labelTitle;
-            document.getElementById('label-tag').innerText = t.labelTag;
-            document.getElementById('label-desc').innerText = t.labelDesc;
-            document.getElementById('label-img').innerText = t.labelImg;
-            document.getElementById('btn-save').innerText = t.btnSave;
             document.getElementById('footer-text').innerText = t.footerText;
         }
     </script>
