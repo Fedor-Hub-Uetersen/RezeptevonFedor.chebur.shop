@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Записки на кухне от Фёдора — Вкусно, полезно, с душой</title>
+    <title>Записки на кухне от Фёдора</title>
     <style>
         :root {
-            --primary: #d97706; /* Теплый медовый/тыквенный оттенок */
+            --primary: #d97706;
             --primary-dark: #b45309;
-            --secondary: #059669; /* Зеленый акцент для здоровья */
+            --secondary: #059669;
             --dark: #292524;
             --light: #fbf8f6;
             --gray: #78716c;
+            --bg-body: #fbf8f6;
+            --bg-card: #ffffff;
+            --text-main: #292524;
+            --text-desc: #78716c;
+            --header-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #10b981;
+            --dark: #f5f5f4;
+            --light: #1c1917;
+            --gray: #a8a29e;
+            --bg-body: #1c1917;
+            --bg-card: #292524;
+            --text-main: #f5f5f4;
+            --text-desc: #a8a29e;
+            --header-bg: #292524;
         }
 
         * {
@@ -20,16 +39,44 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.7;
         }
 
+        /* ВЕРХНИЙ ВЫПАДАЮЩИЙ БАННЕР ПРИВЕТСТВИЯ */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .welcome-close {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
         header {
-            background: #fff;
+            background: var(--header-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -50,7 +97,7 @@
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: var(--primary);
             text-decoration: none;
@@ -61,13 +108,13 @@
 
         .nav-menu {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
 
         .nav-link {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-main);
             font-weight: 600;
             font-size: 0.95rem;
             transition: color 0.2s;
@@ -77,23 +124,49 @@
             color: var(--primary);
         }
 
+        /* КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ И ЯЗЫКА */
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            border-left: 1px solid var(--gray);
+            padding-left: 15px;
+            margin-left: 5px;
+        }
+
+        .ctrl-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--gray);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .ctrl-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
         /* ГЛАВНЫЙ БАННЕР */
         .hero {
-            background: linear-gradient(135deg, #fef3c7 0%, #fae8ff 100%);
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
             padding: 60px 20px;
             text-align: center;
             margin-bottom: 40px;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
+            font-size: 2.3rem;
+            color: var(--primary);
             margin-bottom: 15px;
         }
 
         .hero p {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--text-desc);
             max-width: 600px;
             margin: 0 auto 25px auto;
         }
@@ -115,7 +188,6 @@
             background-color: var(--primary-dark);
         }
 
-        /* СЕКЦИИ */
         section {
             margin-bottom: 50px;
         }
@@ -124,10 +196,10 @@
             text-align: center;
             margin-bottom: 30px;
             font-size: 2rem;
-            color: var(--dark);
+            color: var(--text-main);
         }
 
-        /* СЕТКА РЕЦЕПТОВ И ИСТОРИЙ */
+        /* СЕТКА */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -135,7 +207,7 @@
         }
 
         .card {
-            background: #fff;
+            background: var(--bg-card);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -152,7 +224,7 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            background: #e7e5e4;
+            background: var(--gray);
         }
 
         .card-content {
@@ -165,19 +237,19 @@
 
         .card-title {
             font-size: 1.3rem;
-            color: var(--dark);
+            color: var(--text-main);
             margin-bottom: 10px;
         }
 
         .card-desc {
             font-size: 0.95rem;
-            color: var(--gray);
+            color: var(--text-desc);
             margin-bottom: 20px;
         }
 
         .tag {
             display: inline-block;
-            background: #ecfdf5;
+            background: rgba(5, 150, 105, 0.1);
             color: var(--secondary);
             padding: 4px 10px;
             border-radius: 6px;
@@ -186,9 +258,9 @@
             margin-bottom: 10px;
         }
 
-        /* БЛОК ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ НАВЕРХУ */
+        /* ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ */
         .about-author {
-            background: #fff;
+            background: var(--bg-card);
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -217,23 +289,24 @@
         }
 
         .author-text-content h3 {
-            color: var(--primary-dark);
+            color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.8rem;
         }
 
         .author-text-content p {
-            color: var(--gray);
+            color: var(--text-desc);
             font-size: 1.05rem;
         }
 
         footer {
-            background: var(--dark);
-            color: #fff;
+            background: var(--header-bg);
+            color: var(--text-main);
             text-align: center;
             padding: 30px 20px;
             margin-top: 60px;
             font-size: 0.9rem;
+            border-top: 1px solid var(--gray);
         }
 
         @media (max-width: 768px) {
@@ -253,31 +326,43 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
+
+    <!-- ВЕРХНИЙ БАННЕР ПРИВЕТСТВИЯ -->
+    <div class="welcome-banner" id="welcomeBanner">
+        <span id="banner-text">👋 Добро пожаловать на «Записки на кухне от Фёдора»! Приятного просмотра!</span>
+        <button class="welcome-close" onclick="closeWelcomeBanner()">✕</button>
+    </div>
 
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo">🍳 Записки на кухне от Фёдора</a>
+            <a href="#" class="logo" id="logo-text">🍳 Записки от Фёдора</a>
             
             <nav class="nav-menu">
-                <a href="#about" class="nav-link">Об авторе</a>
-                <a href="#recipes" class="nav-link">Рецепты</a>
-                <a href="#stories" class="nav-link">Истории</a>
+                <a href="#about" class="nav-link" id="nav-about">Об авторе</a>
+                <a href="#recipes" class="nav-link" id="nav-recipes">Рецепты</a>
+                <a href="#stories" class="nav-link" id="nav-stories">Истории</a>
+                
+                <div class="controls">
+                    <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                    <button class="ctrl-btn" onclick="setLang('ru')">RU</button>
+                    <button class="ctrl-btn" onclick="setLang('de')">DE</button>
+                </div>
             </nav>
         </div>
     </header>
 
     <div class="hero">
         <div class="container">
-            <h1>Вкусно, полезно и с душой</h1>
-            <p>Кулинарный дневник о здоровом питании, осознанном подходе к еде, радости каждого дня и теплых семейных традициях.</p>
-            <a href="#recipes" class="btn">Смотреть рецепты</a>
+            <h1 id="hero-title">Вкусно, полезно и с душой</h1>
+            <p id="hero-desc">Кулинарный дневник о здоровом питании, осознанном подходе к еде, радости каждого дня и теплых традициях.</p>
+            <a href="#recipes" class="btn" id="hero-btn">Смотреть рецепты</a>
         </div>
     </div>
 
     <main class="container">
         
-        <!-- ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ -->
+        <!-- ОБ АВТОРЕ -->
         <section id="about">
             <div class="about-author">
                 <div class="author-player-container">
@@ -287,26 +372,26 @@
                     </video>
                 </div>
                 <div class="author-text-content">
-                    <h3>Об авторе — Фёдор</h3>
-                    <p>Приветствую на моей кухне! Этот сайт задуман как уютный уголок, где я делюсь проверенными рецептами полезных блюд, личным опытом поддержания формы и теплыми жизненными историями. Располагайтесь поудобнее, давайте готовить вместе с пользой и удовольствием!</p>
+                    <h3 id="author-title">Об авторе — Фёдор</h3>
+                    <p id="author-desc">Приветствую на моей кухне! Этот сайт задуман как уютный уголок, где я делюсь проверенными рецептами полезных блюд, личным опытом поддержания формы и теплыми жизненными историями. Располагайтесь поудобнее, давайте готовить вместе с пользой и удовольствием!</p>
                 </div>
             </div>
         </section>
 
         <!-- РЕЦЕПТЫ -->
         <section id="recipes">
-            <h2 class="section-title">Полезные рецепты</h2>
+            <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
             <div class="grid">
                 
                 <div class="card">
                     <img src="recipe-1.jpg" alt="Рецепт 1" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Без сахара • Низкий ГИ</span>
-                            <h3 class="card-title">Идеи для правильного завтрака</h3>
-                            <p class="card-desc">Легкие, сытные и полезные блюда, которые заряжают энергией на весь день и помогают держать уровень сахара под контролем.</p>
+                            <span class="tag" id="r1-tag">Без сахара • Низкий ГИ</span>
+                            <h3 class="card-title" id="r1-title">Идеи для правильного завтрака</h3>
+                            <p class="card-desc" id="r1-desc">Легкие, сытные и полезные блюда, которые заряжают энергией на весь день и помогают держать уровень сахара под контролем.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <a href="#" class="btn" style="text-align: center;" id="r1-btn">Читать рецепт</a>
                     </div>
                 </div>
 
@@ -314,11 +399,11 @@
                     <img src="recipe-2.jpg" alt="Рецепт 2" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Домашняя кухня</span>
-                            <h3 class="card-title">Легкие супы и овощные блюда</h3>
-                            <p class="card-desc">Секреты приготовления ароматных блюд из свежих овощей и зелени. Максимум витаминов и пользы для организма.</p>
+                            <span class="tag" id="r2-tag">Домашняя кухня</span>
+                            <h3 class="card-title" id="r2-title">Легкие супы и овощные блюда</h3>
+                            <p class="card-desc" id="r2-desc">Секреты приготовления ароматных блюд из свежих овощей и зелени. Максимум витаминов и пользы для организма.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <a href="#" class="btn" style="text-align: center;" id="r2-btn">Читать рецепт</a>
                     </div>
                 </div>
 
@@ -326,11 +411,11 @@
                     <img src="recipe-3.jpg" alt="Рецепт 3" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">К чаю</span>
-                            <h3 class="card-title">Полезные десерты без вреда</h3>
-                            <p class="card-desc">Как приготовить любимые лакомства дома, используя натуральные ингредиенты и альтернативные полезные продукты.</p>
+                            <span class="tag" id="r3-tag">К чаю</span>
+                            <h3 class="card-title" id="r3-title">Полезные десерты без вреда</h3>
+                            <p class="card-desc" id="r3-desc">Как приготовить любимые лакомства дома, используя натуральные ингредиенты и альтернативные продукты.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <a href="#" class="btn" style="text-align: center;" id="r3-btn">Читать рецепт</a>
                     </div>
                 </div>
 
@@ -339,18 +424,18 @@
 
         <!-- ИСТОРИИ -->
         <section id="stories">
-            <h2 class="section-title">Кулинарные истории</h2>
+            <h2 class="section-title" id="stories-title">Кулинарные истории</h2>
             <div class="grid">
                 
                 <div class="card">
                     <img src="story-1.jpg" alt="История 1" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Из жизни</span>
-                            <h3 class="card-title">Утренний чай и неспешные мысли</h3>
-                            <p class="card-desc">О важности утреннего спокойствия, пользе правильных привычек и том, как начинается прекрасный день на новой кухне.</p>
+                            <span class="tag" id="s1-tag">Из жизни</span>
+                            <h3 class="card-title" id="s1-title">Утренний чай и неспешные мысли</h3>
+                            <p class="card-desc" id="s1-desc">О важности утреннего спокойствия, пользе правильных привычек и том, как начинается прекрасный день.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать историю</a>
+                        <a href="#" class="btn" style="text-align: center;" id="s1-btn">Читать историю</a>
                     </div>
                 </div>
 
@@ -358,11 +443,11 @@
                     <img src="story-2.jpg" alt="История 2" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Традиции</span>
-                            <h3 class="card-title">Готовим вместе с близкими</h3>
-                            <p class="card-desc">Теплые воспоминания и семейные рецепты, которые объединяют поколения за общим столом.</p>
+                            <span class="tag" id="s2-tag">Традиции</span>
+                            <h3 class="card-title" id="s2-title">Готовим вместе с близкими</h3>
+                            <p class="card-desc" id="s2-desc">Теплые воспоминания и семейные рецепты, которые объединяют поколения за общим столом.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать историю</a>
+                        <a href="#" class="btn" style="text-align: center;" id="s2-btn">Читать историю</a>
                     </div>
                 </div>
 
@@ -372,8 +457,145 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Записки на кухне от Фёдора. Все права защищены.</p>
+        <p id="footer-text">&copy; 2026 Записки на кухне от Фёдора. Все права защищены.</p>
     </footer>
 
+    <script>
+        // Закрытие баннера приветствия
+        function closeWelcomeBanner() {
+            document.getElementById('welcomeBanner').style.display = 'none';
+        }
+
+        // Переключение темной и светлой темы
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙';
+            }
+        }
+
+        // Словарь для перевода (RU / DE)
+        const translations = {
+            ru: {
+                bannerText: "👋 Добро пожаловать на «Записки на кухне от Фёдора»! Приятного просмотра!",
+                logoText: "🍳 Записки от Фёдора",
+                navAbout: "Об авторе",
+                navRecipes: "Рецепты",
+                navStories: "Истории",
+                heroTitle: "Вкусно, полезно и с душой",
+                heroDesc: "Кулинарный дневник о здоровом питании, осознанном подходе к еде, радости каждого дня и теплых традициях.",
+                heroBtn: "Смотреть рецепты",
+                authorTitle: "Об авторе — Фёдор",
+                authorDesc: "Приветствую на моей кухне! Этот сайт задуман как уютный уголок, где я делюсь проверенными рецептами полезных блюд, личным опытом поддержания формы и теплыми жизненными историями. Располагайтесь поудобнее, давайте готовить вместе с пользой и удовольствием!",
+                recipesTitle: "Полезные рецепты",
+                r1Tag: "Без сахара • Низкий ГИ",
+                r1Title: "Идеи для правильного завтрака",
+                r1Desc: "Легкие, сытные и полезные блюда, которые заряжают энергией на весь день и помогают держать уровень сахара под контролем.",
+                r1Btn: "Читать рецепт",
+                r2Tag: "Домашняя кухня",
+                r2Title: "Легкие супы и овощные блюда",
+                r2Desc: "Секреты приготовления ароматных блюд из свежих овощей и зелени. Максимум витаминов и пользы для организма.",
+                r2Btn: "Читать рецепт",
+                r3Tag: "К чаю",
+                r3Title: "Полезные десерты без вреда",
+                r3Desc: "Как приготовить любимые лакомства дома, используя натуральные ингредиенты и альтернативные продукты.",
+                r3Btn: "Читать рецепт",
+                storiesTitle: "Кулинарные истории",
+                s1Tag: "Из жизни",
+                s1Title: "Утренний чай и неспешные мысли",
+                s1Desc: "О важности утреннего спокойствия, пользе правильных привычек и том, как начинается прекрасный день.",
+                s1Btn: "Читать историю",
+                s2Tag: "Традиции",
+                s2Title: "Готовим вместе с близкими",
+                s2Desc: "Теплые воспоминания и семейные рецепты, которые объединяют поколения за общим столом.",
+                s2Btn: "Читать историю",
+                footerText: "© 2026 Записки на кухне от Фёдора. Все права защищены."
+            },
+            de: {
+                bannerText: "👋 Willkommen bei „Födors Küchennotizen“! Viel Spaß beim Stöbern!",
+                logoText: "🍳 Födors Notizen",
+                navAbout: "Über mich",
+                navRecipes: "Rezepte",
+                navStories: "Geschichten",
+                heroTitle: "Lecker, gesund und mit Herz",
+                heroDesc: "Ein kulinarisches Tagebuch über gesunde Ernährung, bewussten Genuss und warme Traditionen.",
+                heroBtn: "Rezepte ansehen",
+                authorTitle: "Über den Autor — Fedor",
+                authorDesc: "Willkommen in meiner Küche! Diese Website ist ein gemütlicher Ort, an dem ich bewährte Rezepte für gesunde Gerichte, persönliche Erfahrungen und herzerwärmende Geschichten teile. Machen Sie es sich bequem!",
+                recipesTitle: "Gesunde Rezepte",
+                r1Tag: "Zuckerfrei • Niedriger GI",
+                r1Title: "Ideen für ein gesundes Frühstück",
+                r1Desc: "Leichte, sättigende und nahrhafte Gerichte, die Ihnen Energie für den ganzen Tag geben.",
+                r1Btn: "Rezept lesen",
+                r2Tag: "Hausmannskost",
+                r2Title: "Leichte Suppen & Gemüsegemüse",
+                r2Desc: "Geheimnisse der Zubereitung aromatischer Gerichte aus frischem Gemüse. Maximale Vitamine.",
+                r2Btn: "Rezept lesen",
+                r3Tag: "Zum Tee",
+                r3Title: "Gesunde Desserts ohne Schaden",
+                r3Desc: "Wie man Lieblingsleckereien zu Hause mit natürlichen Zutaten zubereitet.",
+                r3Btn: "Rezept lesen",
+                storiesTitle: "Kulinarische Geschichten",
+                s1Tag: "Aus dem Leben",
+                s1Title: "Morgentee und ruhige Gedanken",
+                s1Desc: "Über die Bedeutung morgendlicher Ruhe und guter Gewohnheiten für den Start in den Tag.",
+                s1Btn: "Geschichte lesen",
+                s2Tag: "Traditionen",
+                s2Title: "Gemeinsam mit Lieben kochen",
+                s2Desc: "Warme Erinnerungen und Familienrezepte, die Generationen am Tisch vereinen.",
+                s2Btn: "Geschichte lesen",
+                footerText: "© 2026 Födors Küchennotizen. Alle Rechte vorbehalten."
+            }
+        };
+
+        // Функция смены языка
+        function setLang(lang) {
+            const t = translations[lang];
+            document.getElementById('banner-text').innerText = t.bannerText;
+            document.getElementById('logo-text').innerText = t.logoText;
+            document.getElementById('nav-about').innerText = t.navAbout;
+            document.getElementById('nav-recipes').innerText = t.navRecipes;
+            document.getElementById('nav-stories').innerText = t.navStories;
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('hero-btn').innerText = t.heroBtn;
+            document.getElementById('author-title').innerText = t.authorTitle;
+            document.getElementById('author-desc').innerText = t.authorDesc;
+            document.getElementById('recipes-title').innerText = t.recipesTitle;
+            
+            document.getElementById('r1-tag').innerText = t.r1Tag;
+            document.getElementById('r1-title').innerText = t.r1Title;
+            document.getElementById('r1-desc').innerText = t.r1Desc;
+            document.getElementById('r1-btn').innerText = t.r1Btn;
+
+            document.getElementById('r2-tag').innerText = t.r2Tag;
+            document.getElementById('r2-title').innerText = t.r2Title;
+            document.getElementById('r2-desc').innerText = t.r2Desc;
+            document.getElementById('r2-btn').innerText = t.r2Btn;
+
+            document.getElementById('r3-tag').innerText = t.r3Tag;
+            document.getElementById('r3-title').innerText = t.r3Title;
+            document.getElementById('r3-desc').innerText = t.r3Desc;
+            document.getElementById('r3-btn').innerText = t.r3Btn;
+
+            document.getElementById('stories-title').innerText = t.storiesTitle;
+            document.getElementById('s1-tag').innerText = t.s1Tag;
+            document.getElementById('s1-title').innerText = t.s1Title;
+            document.getElementById('s1-desc').innerText = t.s1Desc;
+            document.getElementById('s1-btn').innerText = t.s1Btn;
+
+            document.getElementById('s2-tag').innerText = t.s2Tag;
+            document.getElementById('s2-title').innerText = t.s2Title;
+            document.getElementById('s2-desc').innerText = t.s2Desc;
+            document.getElementById('s2-btn').innerText = t.s2Btn;
+
+            document.getElementById('footer-text').innerText = t.footerText;
+        }
+    </script>
 </body>
 </html>
