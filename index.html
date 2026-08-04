@@ -48,7 +48,6 @@
             line-height: 1.7;
         }
 
-        /* ВЕРХНИЙ ВЫПАДАЮЩИЙ БАННЕР ПРИВЕТСТВИЯ */
         .welcome-banner {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -124,7 +123,6 @@
             color: var(--primary);
         }
 
-        /* КНОПКИ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ И ЯЗЫКА */
         .controls {
             display: flex;
             gap: 8px;
@@ -150,7 +148,6 @@
             color: var(--primary);
         }
 
-        /* ГЛАВНЫЙ БАННЕР */
         .hero {
             background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
             padding: 60px 20px;
@@ -199,7 +196,6 @@
             color: var(--text-main);
         }
 
-        /* СЕТКА */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -258,7 +254,6 @@
             margin-bottom: 10px;
         }
 
-        /* ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ */
         .about-author {
             background: var(--bg-card);
             padding: 40px;
@@ -328,7 +323,6 @@
 </head>
 <body data-theme="light">
 
-    <!-- ВЕРХНИЙ БАННЕР ПРИВЕТСТВИЯ -->
     <div class="welcome-banner" id="welcomeBanner">
         <span id="banner-text">👋 Добро пожаловать на «Записки на кухне от Фёдора»! Приятного просмотра!</span>
         <button class="welcome-close" onclick="closeWelcomeBanner()">✕</button>
@@ -362,11 +356,10 @@
 
     <main class="container">
         
-        <!-- ОБ АВТОРЕ -->
         <section id="about">
             <div class="about-author">
                 <div class="author-player-container">
-                    <video class="author-player" controls poster="author-preview.jpg">
+                    <video class="author-player" controls preload="auto">
                         <source src="author-video.mp4" type="video/mp4">
                         Ваш браузер не поддерживает видеоэлемент.
                     </video>
@@ -378,7 +371,6 @@
             </div>
         </section>
 
-        <!-- РЕЦЕПТЫ -->
         <section id="recipes">
             <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
             <div class="grid">
@@ -422,7 +414,6 @@
             </div>
         </section>
 
-        <!-- ИСТОРИИ -->
         <section id="stories">
             <h2 class="section-title" id="stories-title">Кулинарные истории</h2>
             <div class="grid">
@@ -461,12 +452,10 @@
     </footer>
 
     <script>
-        // Закрытие баннера приветствия
         function closeWelcomeBanner() {
             document.getElementById('welcomeBanner').style.display = 'none';
         }
 
-        // Переключение темной и светлой темы
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.getElementById('themeBtn');
@@ -479,7 +468,6 @@
             }
         }
 
-        // Словарь для перевода (RU / DE)
         const translations = {
             ru: {
                 bannerText: "👋 Добро пожаловать на «Записки на кухне от Фёдора»! Приятного просмотра!",
@@ -553,7 +541,6 @@
             }
         };
 
-        // Функция смены языка
         function setLang(lang) {
             const t = translations[lang];
             document.getElementById('banner-text').innerText = t.bannerText;
