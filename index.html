@@ -203,7 +203,6 @@
             color: var(--text-main);
         }
 
-        /* СЕТКА */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -228,7 +227,7 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            background: var(--gray);
+            display: none; /* Картинка скрыта, пока пользователь не добавит фото */
         }
 
         .card-content {
@@ -262,7 +261,6 @@
             margin-bottom: 10px;
         }
 
-        /* ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ */
         .about-author {
             background: var(--bg-card);
             padding: 40px;
@@ -303,7 +301,6 @@
             font-size: 1.05rem;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ДОБАВЛЕНИЯ РЕЦЕПТА */
         .modal {
             display: none;
             position: fixed;
@@ -446,7 +443,7 @@
             </div>
         </section>
 
-        <!-- РЕЦЕПТЫ С КНОПКОЙ ДОБАВЛЕНИЯ -->
+        <!-- 6 НОВЫХ ПУСТЫХ ОКОШЕК + ПРЕЖНИЕ 3 (ВСЕГО 9 МЕСТ) -->
         <section id="recipes">
             <div class="section-header">
                 <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
@@ -455,37 +452,118 @@
 
             <div class="grid" id="recipesGrid">
                 
+                <!-- Карточка 1 -->
                 <div class="card">
-                    <img src="recipe-1.jpg" alt="Рецепт 1" class="card-img">
+                    <img src="" alt="" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Без сахара • Низкий ГИ</span>
+                            <span class="tag">Завтрак • Низкий ГИ</span>
                             <h3 class="card-title">Идеи для правильного завтрака</h3>
-                            <p class="card-desc">Легкие, сытные и полезные блюда, которые заряжают энергией на весь день и помогают держать уровень сахара под контролем.</p>
+                            <p class="card-desc">Легкие, сытные и полезные блюда для бодрого начала дня.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- Карточка 2 -->
                 <div class="card">
-                    <img src="recipe-2.jpg" alt="Рецепт 2" class="card-img">
+                    <img src="" alt="" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">Домашняя кухня</span>
+                            <span class="tag">Обеды</span>
                             <h3 class="card-title">Легкие супы и овощные блюда</h3>
-                            <p class="card-desc">Секреты приготовления ароматных блюд из свежих овощей и зелени. Максимум витаминов и пользы для организма.</p>
+                            <p class="card-desc">Максимум витаминов и пользы для организма.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
                 </div>
 
+                <!-- Карточка 3 -->
                 <div class="card">
-                    <img src="recipe-3.jpg" alt="Рецепт 3" class="card-img">
+                    <img src="" alt="" class="card-img">
                     <div class="card-content">
                         <div>
-                            <span class="tag">К чаю</span>
+                            <span class="tag">Десерты</span>
                             <h3 class="card-title">Полезные десерты без вреда</h3>
-                            <p class="card-desc">Как приготовить любимые лакомства дома, используя натуральные ингредиенты и альтернативные продукты.</p>
+                            <p class="card-desc">Любимые лакомства из натуральных ингредиентов.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №4</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 5 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №5</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 6 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №6</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 7 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №7</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 8 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №8</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
+                        </div>
+                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                    </div>
+                </div>
+
+                <!-- Карточка 9 -->
+                <div class="card">
+                    <img src="" alt="" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="tag">Рецепт №9</span>
+                            <h3 class="card-title">Место для вашего рецепта</h3>
+                            <p class="card-desc">Нажмите «Добавить рецепт», чтобы загрузить фото и описание.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
                     </div>
@@ -499,24 +577,24 @@
             <div class="grid">
                 
                 <div class="card">
-                    <img src="story-1.jpg" alt="История 1" class="card-img">
+                    <img src="" alt="" class="card-img">
                     <div class="card-content">
                         <div>
                             <span class="tag">Из жизни</span>
                             <h3 class="card-title">Утренний чай и неспешные мысли</h3>
-                            <p class="card-desc">О важности утреннего спокойствия, пользе правильных привычек и том, как начинается прекрасный день.</p>
+                            <p class="card-desc">О важности утреннего спокойствия и пользе правильных привычек.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать историю</a>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="story-2.jpg" alt="История 2" class="card-img">
+                    <img src="" alt="" class="card-img">
                     <div class="card-content">
                         <div>
                             <span class="tag">Традиции</span>
                             <h3 class="card-title">Готовим вместе с близкими</h3>
-                            <p class="card-desc">Теплые воспоминания и семейные рецепты, которые объединяют поколения за общим столом.</p>
+                            <p class="card-desc">Теплые воспоминания и семейные рецепты.</p>
                         </div>
                         <a href="#" class="btn" style="text-align: center;">Читать историю</a>
                     </div>
@@ -535,7 +613,7 @@
             <form id="recipeForm" onsubmit="addNewRecipe(event)">
                 <div class="form-group">
                     <label id="label-title">Название блюда</label>
-                    <input type="text" id="recipeTitleInput" required placeholder="Например: Овсяноблин с творогом">
+                    <input type="text" id="recipeTitleInput" required placeholder="Например: Творожная запеканка">
                 </div>
                 <div class="form-group">
                     <label id="label-tag">Категория / Тег</label>
@@ -599,7 +677,7 @@
                     const newCard = document.createElement('div');
                     newCard.className = 'card';
                     newCard.innerHTML = `
-                        <img src="${imageUrl}" alt="${title}" class="card-img">
+                        <img src="${imageUrl}" alt="${title}" class="card-img" style="display: block;">
                         <div class="card-content">
                             <div>
                                 <span class="tag">${tag}</span>
