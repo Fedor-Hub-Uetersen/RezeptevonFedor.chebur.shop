@@ -251,10 +251,40 @@
             margin-bottom: 10px;
         }
 
+        /* СТИЛЬ ДЛЯ СВОРАЧИВАЕМОГО ТЕКСТА РЕЦЕПТА */
+        .card-desc-container {
+            max-height: 100px; /* Изначально текст свернут до небольшой высоты */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Эффект полупрозрачности внизу свернутого текста */
+        .card-desc-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(transparent, var(--bg-card));
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .card.expanded .card-desc-container {
+            max-height: 1000px; /* При разворачивании высота увеличивается */
+        }
+
+        .card.expanded .card-desc-container::after {
+            opacity: 0; /* Убираем градиент при разворачивании */
+        }
+
         .card-desc {
             font-size: 0.95rem;
             color: var(--text-desc);
-            margin-bottom: 20px;
+            white-space: pre-line; /* Сохраняет абзацы и переносы строк */
         }
 
         .tag {
@@ -381,7 +411,7 @@
 
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo" id="logo-text">🍳 Рецепты от Фёдора</a>
+            <a href="#" class="logo" id="logo-text">🍳 Записки от Фёдора</a>
             
             <nav class="nav-menu">
                 <a href="#about" class="nav-link" id="nav-about">Об авторе</a>
@@ -422,140 +452,155 @@
             </div>
         </section>
 
-        <!-- 9 КАРТОЧЕК РЕЦЕПТОВ С КЛИКАБЕЛЬНЫМИ ФОТО -->
+        <!-- 9 КАРТОЧЕК РЕЦЕПТОВ С КНОПКОЙ «Читать полностью» -->
         <section id="recipes">
             <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
             <div class="grid">
                 
                 <!-- 1 -->
-                <div class="card">
+                <div class="card" id="recipe-card-1">
                     <img src="recipe-1.jpg" alt="Рецепт 1" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Завтрак • Низкий ГИ</span>
-                            <h3 class="card-title">Нежная Шакшука с болгарским перцем, томатами и зеленью.</h3>
-                            <p class="card-desc">Шакшука — это яичница, запеченная в густом, сочном соусе из тушеных овощей.Ингредиенты:
-Яйца куриные — 2–3 шт.
-
-Спелые помидоры — 2 шт. (или половина банки томатов в собственном соку)
-
-Болгарский перец (красный или желтый) — 1 шт.
-
-Репчатый лук — 1/2 небольшая головка
-
-Чеснок — 1 зубчик
-
-Оливковое масло — 1 ч. л.
-
-Свежая зелень (петрушка, кинза или укроп) — небольшой пучок
-
-Специи: зира (кумин), паприка, черный перец, соль — по вкусу</p>
+                            <h3 class="card-title">Шакшука с томатами и зеленью</h3>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Шакшука — это яичница, запеченная в густом, сочном соусе из тушеных овощей.
+                                
+                                Ингредиенты:
+                                • Яйца куриные — 2-3 шт.
+                                • Спелые помидоры — 2 шт. (или половина банки томатов в собственном соку)
+                                • Болгарский перец (красный или желтый) — 1 шт.
+                                • Репчатый лук — 1/2 небольшая головка
+                                • Чеснок — 1 зубчик
+                                • Оливковое масло — 1 ч. л.
+                                • Свежая зелень (петрушка, кинза или укроп) — небольшой пучок
+                                • Специи: зира (кумин), паприка, черный перец, соль — по вкусу</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-1', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 2 -->
-                <div class="card">
+                <div class="card" id="recipe-card-2">
                     <img src="recipe-2.jpg" alt="Рецепт 2" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Обеды</span>
                             <h3 class="card-title">Легкие супы и овощные блюда</h3>
-                            <p class="card-desc">Максимум витаминов и пользы для организма.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Секреты приготовления ароматных блюд из свежих овощей и зелени. Максимум витаминов и пользы для организма.
+                                
+                                Полезный суп помогает поддерживать баланс микроэлементов, легко усваивается и дарит долгую сытость без тяжести.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-2', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 3 -->
-                <div class="card">
+                <div class="card" id="recipe-card-3">
                     <img src="recipe-3.jpg" alt="Рецепт 3" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Десерты</span>
                             <h3 class="card-title">Полезные десерты без вреда</h3>
-                            <p class="card-desc">Любимые лакомства из натуральных ингредиентов.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Как приготовить любимые лакомства дома, используя натуральные ингредиенты и альтернативные полезные продукты.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-3', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 4 -->
-                <div class="card">
+                <div class="card" id="recipe-card-4">
                     <img src="recipe-4.jpg" alt="Рецепт 4" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №4</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-4', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 5 -->
-                <div class="card">
+                <div class="card" id="recipe-card-5">
                     <img src="recipe-5.jpg" alt="Рецепт 5" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №5</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-5', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 6 -->
-                <div class="card">
+                <div class="card" id="recipe-card-6">
                     <img src="recipe-6.jpg" alt="Рецепт 6" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №6</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-6', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 7 -->
-                <div class="card">
+                <div class="card" id="recipe-card-7">
                     <img src="recipe-7.jpg" alt="Рецепт 7" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №7</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-7', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 8 -->
-                <div class="card">
+                <div class="card" id="recipe-card-8">
                     <img src="recipe-8.jpg" alt="Рецепт 8" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №8</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-8', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
                 <!-- 9 -->
-                <div class="card">
+                <div class="card" id="recipe-card-9">
                     <img src="recipe-9.jpg" alt="Рецепт 9" class="card-img" onclick="openImageModal(this.src)">
                     <div class="card-content">
                         <div>
                             <span class="tag">Рецепт №9</span>
                             <h3 class="card-title">Новое блюдо от Фёдора</h3>
-                            <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье.</p>
+                            <div class="card-desc-container">
+                                <p class="card-desc">Свежий рецепт, приготовленный с душой и заботой о здоровье. Описание будет дополнено.</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать рецепт</a>
+                        <button class="btn" onclick="toggleRecipe('recipe-card-9', this)" style="text-align: center; width: 100%;">Читать полностью</button>
                     </div>
                 </div>
 
@@ -600,7 +645,7 @@
 
     </main>
 
-    <!-- ОКНО ДЛЯ УВЕЛИЧЕНИЯ ФОТООТЧЕТА -->
+    <!-- ОКНО ДЛЯ УВЕЛИЧЕНИЯ ФОТО -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
         <span class="image-modal-close">&times;</span>
         <img class="image-modal-content" id="modalImage">
@@ -624,6 +669,17 @@
             } else {
                 body.setAttribute('data-theme', 'light');
                 themeBtn.innerText = '🌙';
+            }
+        }
+
+        // Функция разворачивания/сворачивания текста рецепта
+        function toggleRecipe(cardId, btn) {
+            const card = document.getElementById(cardId);
+            card.classList.toggle('expanded');
+            if (card.classList.contains('expanded')) {
+                btn.innerText = 'Свернуть';
+            } else {
+                btn.innerText = 'Читать полностью';
             }
         }
 
