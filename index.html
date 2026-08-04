@@ -227,7 +227,16 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            display: none; /* Картинка скрыта, пока пользователь не добавит фото */
+            display: none;
+        }
+
+        /* ВИДЕОПЛЕЕР В КАРТОЧКАХ ИСТОРИЙ */
+        .card-video {
+            width: 100%;
+            height: 220px;
+            background: #000;
+            display: block;
+            object-fit: cover;
         }
 
         .card-content {
@@ -443,7 +452,7 @@
             </div>
         </section>
 
-        <!-- 6 НОВЫХ ПУСТЫХ ОКОШЕК + ПРЕЖНИЕ 3 (ВСЕГО 9 МЕСТ) -->
+        <!-- РЕЦЕПТЫ -->
         <section id="recipes">
             <div class="section-header">
                 <h2 class="section-title" id="recipes-title">Полезные рецепты</h2>
@@ -452,7 +461,6 @@
 
             <div class="grid" id="recipesGrid">
                 
-                <!-- Карточка 1 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -465,7 +473,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 2 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -478,7 +485,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 3 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -491,7 +497,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 4 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -504,7 +509,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 5 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -517,7 +521,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 6 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -530,7 +533,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 7 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -543,7 +545,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 8 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -556,7 +557,6 @@
                     </div>
                 </div>
 
-                <!-- Карточка 9 -->
                 <div class="card">
                     <img src="" alt="" class="card-img">
                     <div class="card-content">
@@ -572,31 +572,36 @@
             </div>
         </section>
 
+        <!-- КУЛИНАРНЫЕ ИСТОРИИ С ВИДЕОПЛЕЕРАМИ ВМЕСТО КНОПОК -->
         <section id="stories">
             <h2 class="section-title" id="stories-title">Кулинарные истории</h2>
             <div class="grid">
                 
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <video class="card-video" controls preload="metadata">
+                        <source src="story-1.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                     <div class="card-content">
                         <div>
                             <span class="tag">Из жизни</span>
                             <h3 class="card-title">Утренний чай и неспешные мысли</h3>
                             <p class="card-desc">О важности утреннего спокойствия и пользе правильных привычек.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать историю</a>
                     </div>
                 </div>
 
                 <div class="card">
-                    <img src="" alt="" class="card-img">
+                    <video class="card-video" controls preload="metadata">
+                        <source src="story-2.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                     <div class="card-content">
                         <div>
                             <span class="tag">Традиции</span>
                             <h3 class="card-title">Готовим вместе с близкими</h3>
-                            <p class="card-desc">Теплые воспоминания и семейные рецепты.</p>
+                            <p class="card-desc">Теплые воспоминания и семейные рецепты за общим столом.</p>
                         </div>
-                        <a href="#" class="btn" style="text-align: center;">Читать историю</a>
                     </div>
                 </div>
 
