@@ -186,7 +186,7 @@
             margin-bottom: 10px;
         }
 
-        /* БЛОК ОБ АВТОРЕ С ВИДЕО-АВАТАРКОЙ НАВЕРХУ */
+        /* БЛОК ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ НАВЕРХУ */
         .about-author {
             background: #fff;
             padding: 40px;
@@ -194,36 +194,37 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
-            gap: 35px;
+            gap: 40px;
             margin-bottom: 50px;
         }
 
-        .author-video-container {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
+        .author-player-container {
+            flex: 1;
+            max-width: 450px;
+            border-radius: 10px;
             overflow: hidden;
-            border: 4px solid var(--primary);
-            flex-shrink: 0;
-            background: #e7e5e4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #000;
         }
 
-        .author-video {
+        .author-player {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
             display: block;
         }
 
-        .author-info h3 {
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-            font-size: 1.5rem;
+        .author-text-content {
+            flex: 1.2;
         }
 
-        .author-info p {
+        .author-text-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .author-text-content p {
             color: var(--gray);
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         footer {
@@ -239,6 +240,9 @@
             .about-author {
                 flex-direction: column;
                 text-align: center;
+            }
+            .author-player-container {
+                max-width: 100%;
             }
             .nav-menu {
                 display: none;
@@ -273,18 +277,18 @@
 
     <main class="container">
         
-        <!-- ОБ АВТОРЕ (ТЕПЕРЬ ПЕРВЫМ БЛОКОМ) -->
+        <!-- ОБ АВТОРЕ С ВИДЕОПЛЕЕРОМ -->
         <section id="about">
             <div class="about-author">
-                <div class="author-video-container">
-                    <video class="author-video" autoplay muted loop playsinline>
-                        <source src="author-avatar.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
+                <div class="author-player-container">
+                    <video class="author-player" controls poster="author-preview.jpg">
+                        <source src="author-video.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видеоэлемент.
                     </video>
                 </div>
-                <div class="author-info">
+                <div class="author-text-content">
                     <h3>Об авторе — Фёдор</h3>
-                    <p>Приветствую! Я рад заглянуть на свою кухню вместе с вами. Этот сайт задуман как уютный дневник, где делятся проверенными рецептами для поддержания здоровья, личным опытом и добрыми жизненными историями. Готовьте с удовольствием и живите в гармонии!</p>
+                    <p>Приветствую на моей кухне! Этот сайт задуман как уютный уголок, где я делюсь проверенными рецептами полезных блюд, личным опытом поддержания формы и теплыми жизненными историями. Располагайтесь поудобнее, давайте готовить вместе с пользой и удовольствием!</p>
                 </div>
             </div>
         </section>
