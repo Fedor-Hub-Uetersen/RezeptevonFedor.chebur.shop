@@ -80,7 +80,7 @@
         /* ГЛАВНЫЙ БАННЕР */
         .hero {
             background: linear-gradient(135deg, #fef3c7 0%, #fae8ff 100%);
-            padding: 70px 20px;
+            padding: 60px 20px;
             text-align: center;
             margin-bottom: 40px;
         }
@@ -186,7 +186,7 @@
             margin-bottom: 10px;
         }
 
-        /* БЛОК ОБ АВТОРЕ С ВИДЕО-АВАТАРКОЙ */
+        /* БЛОК ОБ АВТОРЕ С ВИДЕО-АВАТАРКОЙ НАВЕРХУ */
         .about-author {
             background: #fff;
             padding: 40px;
@@ -195,6 +195,7 @@
             display: flex;
             align-items: center;
             gap: 35px;
+            margin-bottom: 50px;
         }
 
         .author-video-container {
@@ -255,9 +256,9 @@
             <a href="#" class="logo">🍳 Записки на кухне от Фёдора</a>
             
             <nav class="nav-menu">
+                <a href="#about" class="nav-link">Об авторе</a>
                 <a href="#recipes" class="nav-link">Рецепты</a>
                 <a href="#stories" class="nav-link">Истории</a>
-                <a href="#about" class="nav-link">Об авторе</a>
             </nav>
         </div>
     </header>
@@ -272,6 +273,22 @@
 
     <main class="container">
         
+        <!-- ОБ АВТОРЕ (ТЕПЕРЬ ПЕРВЫМ БЛОКОМ) -->
+        <section id="about">
+            <div class="about-author">
+                <div class="author-video-container">
+                    <video class="author-video" autoplay muted loop playsinline>
+                        <source src="author-avatar.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+                <div class="author-info">
+                    <h3>Об авторе — Фёдор</h3>
+                    <p>Приветствую! Я рад заглянуть на свою кухню вместе с вами. Этот сайт задуман как уютный дневник, где делятся проверенными рецептами для поддержания здоровья, личным опытом и добрыми жизненными историями. Готовьте с удовольствием и живите в гармонии!</p>
+                </div>
+            </div>
+        </section>
+
         <!-- РЕЦЕПТЫ -->
         <section id="recipes">
             <h2 class="section-title">Полезные рецепты</h2>
@@ -345,22 +362,6 @@
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- ОБ АВТОРЕ С ВИДЕО -->
-        <section id="about">
-            <div class="about-author">
-                <div class="author-video-container">
-                    <video class="author-video" autoplay muted loop playsinline>
-                        <source src="author-avatar.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
-                    </video>
-                </div>
-                <div class="author-info">
-                    <h3>Об авторе — Фёдор</h3>
-                    <p>Приветствую! Я рад заглянуть на свою кухню вместе с вами. Этот сайт задуман как уютный дневник, где делятся проверенными рецептами для поддержания здоровья, личным опытом и добрыми жизненными историями. Готовьте с удовольствием и живите в гармонии!</p>
-                </div>
             </div>
         </section>
 
