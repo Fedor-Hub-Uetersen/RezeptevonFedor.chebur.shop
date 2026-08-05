@@ -1,9 +1,9 @@
-# Rezeptevonfedor.chebur.shop
+# RezeptevonFedor.chebur.shop
 # 🍳 Записки на кухне от Фёдора
 
 Добро пожаловать в мой уютный кулинарный дневник! Это авторский сайт, созданный с душой и вниманием к деталям. Здесь собраны проверенные полезные рецепты, идеи для здорового питания, осознанный подход к еде и теплые жизненные истории.
 
-🌐 **Официальный сайт:** [Rezeptevonfedor.chebur.shop](https://Rezeptevonfedor.chebur.shop)
+🌐 **Официальный сайт:** [RezeptevonFedor.chebur.shop](https://RezeptevonFedor.chebur.shop)
 
 ---
 
