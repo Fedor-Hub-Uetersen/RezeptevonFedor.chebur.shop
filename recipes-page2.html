@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню для диабетика на неделю — Записки на кухне от Фёдора</title>
+    <style>
+        :root {
+            --primary: #d97706;
+            --primary-dark: #b45309;
+            --secondary: #059669;
+            --dark: #292524;
+            --light: #fbf8f6;
+            --gray: #78716c;
+            --bg-body: #fbf8f6;
+            --bg-card: #ffffff;
+            --text-main: #292524;
+            --text-desc: #78716c;
+            --header-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #10b981;
+            --dark: #f5f5f4;
+            --light: #1c1917;
+            --gray: #a8a29e;
+            --bg-body: #1c1917;
+            --bg-card: #292524;
+            --text-main: #f5f5f4;
+            --text-desc: #a8a29e;
+            --header-bg: #292524;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            border-left: 1px solid var(--gray);
+            padding-left: 15px;
+            margin-left: 5px;
+        }
+
+        .ctrl-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--gray);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .ctrl-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-mini {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-mini h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero-mini p {
+            color: var(--text-desc);
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: var(--bg-body);
+            cursor: pointer;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .card-desc-container {
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .card-desc-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(transparent, var(--bg-card));
+            pointer-events: none;
+        }
+
+        .card.expanded .card-desc-container {
+            max-height: 3000px;
+        }
+
+        .card.expanded .card-desc-container::after {
+            opacity: 0;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-desc);
+            white-space: pre-line;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal-content {
+            max-width: 85%;
+            max-height: 85vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        footer {
+            background: var(--header-bg);
+            color: var(--text-main);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo" id="logo-text">🍳 Диабетическая кухня от Федора</a>
+            
+            <div class="nav-menu">
+                <a href="index.html#recipes" class="nav-link" id="nav-back">← На главную</a>
+                
+                <div class="controls">
+                    <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                    <button class="ctrl-btn" onclick="setLang('ru')">RU</button>
+                    <button class="ctrl-btn" onclick="setLang('de')">DE</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-mini">
+        <div class="container">
+            <h1 id="hero-title">Меню для диабетика на неделю</h1>
+            <p id="hero-desc">7 дней — 7 полезных блюд с низким гликемическим индексом</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="grid">
+            
+            <!-- Понедельник -->
+            <div class="card" id="recipe-card-1">
+                <img src="" alt="Понедельник" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-1">Понедельник</span>
+                        <h3 class="card-title" id="title-1">Рецепт Понедельник</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-1">Завтрак: Овсяноблин с творогом и зеленью (1.5 ХЕ)
+Обед: Зелёный борщ со щавелем и яйцом + 1 кусочек ржаного хлеба (1.6 ХЕ)
+Ужин: Запечённая лодочка из кабачка с фаршем из индейки (0.4 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-1', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Вторник -->
+            <div class="card" id="recipe-card-2">
+                <img src="" alt="Вторник" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-2">Вторник</span>
+                        <h3 class="card-title" id="title-2">Рецепт Вторник</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-2">Завтрак: Пышная овсяно-яблочная шарлотка на сковороде (1.8 ХЕ)
+Обед: Суп-пюре из брокколи и цветной капусты с сухариками из ржаного хлеба (1.2 ХЕ)
+Ужин: Нежные рыбные котлеты с брокколи (2 шт.) + свежий огурец (0.5 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-2', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Среда -->
+            <div class="card" id="recipe-card-3">
+                <img src="" alt="Среда" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-3">Среда</span>
+                        <h3 class="card-title" id="title-3">Рецепт Среда</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-3">Завтрак: Яичница-глазунья из 2 яиц с помидорами и шпинатом (0.3 ХЕ)
+Обед: Гречка отварная (4 ст. л.) + тушёная печень с луком в сметане (1.8 ХЕ)
+Ужин: Ржаные пирожки с капустой и яйцом (2 шт.) + чашка чая (2.2 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-3', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Четверг -->
+            <div class="card" id="recipe-card-4">
+                <img src="" alt="Четверг" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-4">Четверг</span>
+                        <h3 class="card-title" id="title-4">Рецепт Четверг</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-4">Завтрак: Творожная запеканка без муки и сахара (с овсяными отрубями) (0.8 ХЕ)
+Обед: Рыбный суп из горбуши или ухи из белой рыбы (0.3 ХЕ)
+Ужин: Куриное филе, тушённое с стручковой фасолью и чесноком (0.5 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-4', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Пятница -->
+            <div class="card" id="recipe-card-5">
+                <img src="" alt="Пятница" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-5">Пятница</span>
+                        <h3 class="card-title" id="title-5">Рецепт Пятница</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-5">Завтрак: Овсяная каша на воде с добавлением 1% молока и корицы (2.0 ХЕ)
+Обед: Щи из свежей капусты с курицей + 1 кусочек ржаного хлеба (1.4 ХЕ)
+Ужин: Баклажаны, фаршированные индейкой и овощами под сыром (0.6 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-5', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Суббота -->
+            <div class="card" id="recipe-card-6">
+                <img src="" alt="Суббота" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-6">Суббота</span>
+                        <h3 class="card-title" id="title-6">Рецепт Суббота</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-6">Завтрак: Овсяно-яблочные оладьи на кефире (1.5 ХЕ)
+Обед: Тушёная квашеная капуста с постной свининой или индейкой (0.8 ХЕ)
+Ужин: Рыбные котлеты с брокколи (2 шт.) + салат из свежей капусты и огурца (0.6 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-6', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Воскресенье -->
+            <div class="card" id="recipe-card-7">
+                <img src="" alt="Воскресенье" class="card-img" onclick="openImageModal(this.src)">
+                <div class="card-content">
+                    <div>
+                        <span class="tag" id="tag-7">Воскресенье</span>
+                        <h3 class="card-title" id="title-7">Рецепт Воскресенье</h3>
+                        <div class="card-desc-container">
+                            <p class="card-desc" id="desc-7">Завтрак: Омлет из 2 яиц с сыром и болгарским перцем (0.4 ХЕ)
+Обед: Запеченное куриное бедро без кожи + отварная перловка (3 ст. л.) (1.7 ХЕ)
+Ужин: Легкий салат из отварной грудки, огурца, яйца и греческого йогурта (0.2 ХЕ)</p>
+                        </div>
+                    </div>
+                    <button class="btn read-btn" onclick="toggleRecipe('recipe-card-7', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+            <!-- Рекламный блок №2 -->
+            <div class="card" id="recipe-card-ad-2" style="border: 2px dashed #059669; background: rgba(5, 150, 105, 0.05); display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; padding: 30px 20px; min-height: 380px;">
+                <div>
+                    <span id="ad-tag" style="font-size: 0.8rem; color: #78716c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: bold; display: block;">Реклама / Партнёрам №2</span>
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">📢</div>
+                    <h3 id="ad-title" style="color: var(--secondary); margin-bottom: 10px; font-size: 1.2rem;">Полезные продукты и кухонная утварь</h3>
+                    <p id="ad-desc" style="color: var(--text-desc); font-size: 0.9rem; max-width: 250px; margin-bottom: 15px;">Рекомендованные ингредиенты, посуда для запекания и техника для здорового питания.</p>
+                </div>
+                <a id="ad-btn" href="https://chebur.shop/?page_id=2216&v=b1d472252b71" target="_blank" class="btn" style="background-color: var(--secondary); width: 100%; text-align: center;">Перейти к продуктам ↗</a>
+            </div>
+
+            <!-- Плеер + открывающееся окно рецепта недели -->
+            <div class="card" id="media-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <video controls style="width: 100%; height: 220px; object-fit: cover; background: #000; border-bottom: 1px solid var(--gray);">
+                        <source src="" type="video/mp4">
+                        Ваш браузер не поддерживает видеоплеер.
+                    </video>
+                    <div style="padding: 20px 25px 10px 25px;">
+                        <span class="tag" id="media-tag">Видео-рецепт недели</span>
+                        <h3 class="card-title" id="media-title">Рецепт недели</h3>
+                        
+                        <div class="card-desc-container" id="media-desc-container">
+                            <p class="card-desc" id="media-desc"></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 0 25px 25px 25px;">
+                    <button class="btn read-btn" onclick="toggleRecipe('media-card', this)" style="text-align: center; width: 100%;">Читать полностью</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pagination">
+            <a href="index.html#recipes" class="btn" id="pagination-back" style="background-color: var(--gray);">← На 1-ю страницу</a>
+            <span id="pagination-page" style="font-weight: bold; color: var(--text-desc);">Страница 2</span>
+        </div>
+    </main>
+
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <img class="image-modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p id="footer-text">&copy; 2026 Записки на кухне от Фёдора. Все права защищены.</p>
+    </footer>
+
+    <script>
+        let currentLang = 'ru';
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙';
+            }
+        }
+
+        function toggleRecipe(cardId, btn) {
+            const card = document.getElementById(cardId);
+            card.classList.toggle('expanded');
+            
+            const isExpanded = card.classList.contains('expanded');
+            if (currentLang === 'de') {
+                btn.innerText = isExpanded ? 'Einklappen' : 'Vollständig lesen';
+            } else {
+                btn.innerText = isExpanded ? 'Свернуть' : 'Читать полностью';
+            }
+        }
+
+        function openImageModal(src) {
+            if (!src) return;
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        const translations = {
+            ru: {
+                logoText: "🍳 Диабетическая кухня от Федора",
+                navBack: "← На главную",
+                heroTitle: "Меню для диабетика на неделю",
+                heroDesc: "7 дней — 7 полезных блюд с низким гликемическим индексом",
+                tag1: "Понедельник",
+                title1: "Рецепт Понедельник",
+                tag2: "Вторник",
+                title2: "Рецепт Вторник",
+                tag3: "Среда",
+                title3: "Рецепт Среда",
+                tag4: "Четверг",
+                title4: "Рецепт Четверг",
+                tag5: "Пятница",
+                title5: "Рецепт Пятница",
+                tag6: "Суббота",
+                title6: "Рецепт Суббота",
+                tag7: "Воскресенье",
+                title7: "Рецепт Воскресенье",
+                adTag: "Реклама / Партнёрам №2",
+                adTitle: "Полезные продукты и кухонная утварь",
+                adDesc: "Рекомендованные ингредиенты, посуда для запекания и техника для здорового питания.",
+                adBtn: "Перейти к продуктам ↗",
+                mediaTag: "Видео-рецепт недели",
+                mediaTitle: "Рецепт недели",
+                paginationBack: "← На 1-ю страницу",
+                paginationPage: "Страница 2",
+                footerText: "© 2026 Записки на кухне от Фёдора. Все права защищены."
+            },
+            de: {
+                logoText: "🍳 Diabetikerküche von Fedor",
+                navBack: "← Zur Hauptseite",
+                heroTitle: "Wochenmenü für Diabetiker",
+                heroDesc: "7 Tage — 7 gesunde Gerichte mit niedrigem glykämischen Index",
+                tag1: "Montag",
+                title1: "Rezept Montag",
+                tag2: "Dienstag",
+                title2: "Rezept Dienstag",
+                tag3: "Mittwoch",
+                title3: "Rezept Mittwoch",
+                tag4: "Donnerstag",
+                title4: "Rezept Donnerstag",
+                tag5: "Freitag",
+                title5: "Rezept Freitag",
+                tag6: "Samstag",
+                title6: "Rezept Samstag",
+                tag7: "Sonntag",
+                title7: "Rezept Sonntag",
+                adTag: "Werbung / Partner Nr. 2",
+                adTitle: "Gesunde Produkte & Küchenutensilien",
+                adDesc: "Empfohlene Zutaten, Backformen und Küchengeräte für eine gesunde Ernährung.",
+                adBtn: "Zu den Produkten ↗",
+                mediaTag: "Video-Rezept der Woche",
+                mediaTitle: "Rezept der Woche",
+                paginationBack: "← Zur 1. Seite",
+                paginationPage: "Seite 2",
+                footerText: "© 2026 Födors Notizen aus der Küche. Alle Rechte vorbehalten."
+            }
+        };
+
+        function setLang(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            document.getElementById('logo-text').innerText = t.logoText;
+            document.getElementById('nav-back').innerText = t.navBack;
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+
+            for (let i = 1; i <= 7; i++) {
+                if (document.getElementById(`tag-${i}`)) document.getElementById(`tag-${i}`).innerText = t[`tag${i}`];
+                if (document.getElementById(`title-${i}`)) document.getElementById(`title-${i}`).innerText = t[`title${i}`];
+            }
+
+            document.getElementById('ad-tag').innerText = t.adTag;
+            document.getElementById('ad-title').innerText = t.adTitle;
+            document.getElementById('ad-desc').innerText = t.adDesc;
+            document.getElementById('ad-btn').innerText = t.adBtn;
+
+            document.getElementById('media-tag').innerText = t.mediaTag;
+            document.getElementById('media-title').innerText = t.mediaTitle;
+
+            document.getElementById('pagination-back').innerText = t.paginationBack;
+            document.getElementById('pagination-page').innerText = t.paginationPage;
+            document.getElementById('footer-text').innerText = t.footerText;
+
+            document.querySelectorAll('.read-btn').forEach(btn => {
+                const card = btn.closest('.card');
+                const isExpanded = card && card.classList.contains('expanded');
+                if (lang === 'de') {
+                    btn.innerText = isExpanded ? 'Einklappen' : 'Vollständig lesen';
+                } else {
+                    btn.innerText = isExpanded ? 'Свернуть' : 'Читать полностью';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
