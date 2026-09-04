@@ -136,7 +136,6 @@
             margin-bottom: 10px;
         }
 
-        /* Стили выпадающего калькулятора XE/BE */
         .xe-calculator-wrapper {
             margin-top: 15px;
             max-width: 600px;
@@ -384,7 +383,7 @@
         <div class="container header-inner">
             <a href="index.html" class="logo" id="logo-text">🍳 Диабетическая кухня от Федора</a>
             
-           <div class="nav-menu">
+            <div class="nav-menu">
                 <a href="index.html" class="nav-link" id="nav-back">← На главную</a>
                 <a href="page3.html" class="nav-link" id="nav-spices">Специи и секреты →</a>
                 
@@ -401,7 +400,6 @@
         <div class="container">
             <h1 id="hero-title">Меню для диабетика на неделю</h1>
             
-            <!-- Выпадающий калькулятор XE / BE -->
             <div class="xe-calculator-wrapper">
                 <button class="xe-calc-toggle" onclick="toggleXeCalc()">
                     <span id="calc-toggle-btn">🧮 Калькулятор ХЕ (Хлебных Единиц)</span>
@@ -614,8 +612,9 @@
         </div>
 
         <div class="pagination">
-            <a href="index.html#recipes" class="btn" id="pagination-back" style="background-color: var(--gray);">← На 1-ю страницу</a>
+            <a href="index.html" class="btn" id="pagination-back" style="background-color: var(--gray);">← На 1-ю страницу</a>
             <span id="pagination-page" style="font-weight: bold; color: var(--text-desc);">Страница 2</span>
+            <a href="page3.html" class="btn" id="pagination-next">На 3-ю страницу →</a>
         </div>
     </main>
 
@@ -677,7 +676,6 @@
         function calculateXE() {
             const carbs = parseFloat(document.getElementById('carbsInput').value) || 0;
             const weight = parseFloat(document.getElementById('weightInput').value) || 0;
-            // Стандартный расчёт: 1 ХЕ = 12г углеводов
             const result = (carbs * weight / 100) / 12;
             document.getElementById('xeResult').innerText = result.toFixed(1);
         }
@@ -686,6 +684,7 @@
             ru: {
                 logoText: "🍳 Диабетическая кухня от Федора",
                 navBack: "← На главную",
+                navSpices: "Специи и секреты →",
                 heroTitle: "Меню для диабетика на неделю",
                 calcToggle: "🧮 Калькулятор ХЕ (Хлебных Единиц)",
                 lblCarbs: "Углеводы на 100г (г):",
@@ -721,11 +720,13 @@
                 mediaTitle: "Овсяная шарлотка с яблоками на сковороде",
                 paginationBack: "← На 1-ю страницу",
                 paginationPage: "Страница 2",
+                paginationNext: "На 3-ю страницу →",
                 footerText: "© 2026 Записки на кухне от Фёдора. Все права защищены."
             },
             de: {
                 logoText: "🍳 Diabetikerküche von Fedor",
                 navBack: "← Zur Hauptseite",
+                navSpices: "Gewürze & Geheimnisse →",
                 heroTitle: "Wochenmenü für Diabetiker",
                 calcToggle: "🧮 BE-Rechner (Broteinheiten)",
                 lblCarbs: "Kohlenhydrate pro 100g (g):",
@@ -761,6 +762,7 @@
                 mediaTitle: "Hafer-Apfel-Charlotte aus der Pfanne",
                 paginationBack: "← Zur 1. Seite",
                 paginationPage: "Seite 2",
+                paginationNext: "Zur 3. Seite →",
                 footerText: "© 2026 Födors Notizen aus der Küche. Alle Rechte vorbehalten."
             }
         };
@@ -771,6 +773,7 @@
 
             document.getElementById('logo-text').innerText = t.logoText;
             document.getElementById('nav-back').innerText = t.navBack;
+            document.getElementById('nav-spices').innerText = t.navSpices;
             document.getElementById('hero-title').innerText = t.heroTitle;
             
             // Перевод калькулятора
@@ -796,6 +799,7 @@
 
             document.getElementById('pagination-back').innerText = t.paginationBack;
             document.getElementById('pagination-page').innerText = t.paginationPage;
+            document.getElementById('pagination-next').innerText = t.paginationNext;
             document.getElementById('footer-text').innerText = t.footerText;
 
             document.querySelectorAll('.read-btn').forEach(btn => {
