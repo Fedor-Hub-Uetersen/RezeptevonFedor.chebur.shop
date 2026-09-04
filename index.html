@@ -487,10 +487,11 @@
         <div class="container header-inner">
             <a href="#" class="logo" id="logo-text">🍳 Диа-кухня от Федора</a>
             
-            <nav class="nav-menu">
-                <a href="#about" class="nav-link" id="nav-about">Об авторе</a>
-                <a href="#recipes" class="nav-link" id="nav-recipes">Рецепты</a>
-                <a href="#stories" class="nav-link" id="nav-stories">Истории</a>
+         <nav class="nav-menu">
+    <a href="#about" class="nav-link" id="nav-about">Об авторе</a>
+    <a href="#recipes" class="nav-link" id="nav-recipes">Рецепты</a>
+    <a href="#stories" class="nav-link" id="nav-stories">Истории</a>
+    <a href="page3.html" class="nav-link" id="nav-spices">Специи и секреты</a>
                 
                 <a href="https://algorithmic-art.chebur.shop/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; border: 2px solid var(--primary); border-radius: 50px; padding: 5px 14px; color: var(--primary); text-decoration: none; font-weight: bold; font-size: 0.85rem; transition: all 0.2s ease;">
                     Алгоритмы и Арт <span style="font-size: 0.9rem;">↗</span>
@@ -1197,6 +1198,7 @@
                 navRecipes: "Рецепты",
                 navStories: "Истории",
                 heroTitle: "Вкусно, полезно и с душой",
+                navSpices: "Специи и секреты",
                 heroDesc: "Кулинарный дневник о здоровом питании, осознанном подходе к еде, радости каждого дня и теплых традициях.",
                 heroBtn: "Смотреть рецепты",
                 authorTitle: "Об авторе — Фёдор",
@@ -1234,6 +1236,7 @@
                 navAbout: "Über mich",
                 navRecipes: "Rezepte",
                 navStories: "Geschichten",
+                navSpices: "Gewürze & Geheimnisse",
                 heroTitle: "Lecker, gesund und mit Herz",
                 heroDesc: "Ein kulinarisches Tagebuch über gesunde Ernährung, bewussten Genuss und warme Traditionen.",
                 heroBtn: "Rezepte ansehen",
@@ -1277,6 +1280,7 @@
             document.getElementById('nav-about').innerText = t.navAbout;
             document.getElementById('nav-recipes').innerText = t.navRecipes;
             document.getElementById('nav-stories').innerText = t.navStories;
+            document.getElementById('nav-spices').innerText = t.navSpices; // <-- Вставляем сюда!
             document.getElementById('hero-title').innerText = t.heroTitle;
             document.getElementById('hero-desc').innerText = t.heroDesc;
             document.getElementById('hero-btn').innerText = t.heroBtn;
