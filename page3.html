@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23d97706%22/><text x=%2250%22 y=%2275%22 font-size=%2265%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>Ф</text><text x=%2250%22 y=%2235%22 font-size=%2245%22 text-anchor=%22middle%22>🌶️</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Специи, соусы и секреты здоровья — Записки на кухне от Фёдора</title>
+    <style>
+        :root {
+            --primary: #d97706;
+            --primary-dark: #b45309;
+            --secondary: #059669;
+            --dark: #292524;
+            --light: #fbf8f6;
+            --gray: #78716c;
+            --bg-body: #fbf8f6;
+            --bg-card: #ffffff;
+            --text-main: #292524;
+            --text-desc: #78716c;
+            --header-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #10b981;
+            --dark: #f5f5f4;
+            --light: #1c1917;
+            --gray: #a8a29e;
+            --bg-body: #1c1917;
+            --bg-card: #292524;
+            --text-main: #f5f5f4;
+            --text-desc: #a8a29e;
+            --header-bg: #292524;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            border-left: 1px solid var(--gray);
+            padding-left: 15px;
+        }
+
+        .ctrl-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--gray);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .ctrl-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-mini {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero-mini h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero-mini p {
+            color: var(--text-desc);
+            font-size: 1.05rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-desc);
+            white-space: pre-line;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-print {
+            background-color: transparent;
+            border: 1px solid var(--gray);
+            color: var(--text-main);
+        }
+
+        .btn-print:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Видео блок */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 500px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .video-content {
+            padding: 20px 25px;
+        }
+
+        /* Форма обратной связи */
+        .feedback-section {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            background: var(--bg-body);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        footer {
+            background: var(--header-bg);
+            color: var(--text-main);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Печать */
+        @media print {
+            body * { visibility: hidden; }
+            .printable-content, .printable-content * { visibility: visible; }
+            .printable-content {
+                position: absolute; left: 0; top: 0; width: 100%;
+                box-shadow: none !important; border: none !important;
+            }
+            .btn-print, .feedback-section, video, header, footer { display: none !important; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo" id="logo-text">🍳 Записки от Фёдора</a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link" id="nav-page1">← Стр. 1</a>
+                <a href="page2.html" class="nav-link" id="nav-page2">← Меню на неделю</a>
+                <div class="controls">
+                    <button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+                    <button class="ctrl-btn" onclick="setLang('ru')">RU</button>
+                    <button class="ctrl-btn" onclick="setLang('de')">DE</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-mini">
+        <div class="container">
+            <h1 id="hero-title">Фирменные специи, соусы и секреты здоровья</h1>
+            <p id="hero-desc">Вкусная еда без лишнего сахара, маленькие кулинарные хитрости и личный опыт</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- Яркий баннер-викторина -->
+        <div style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); color: #ffffff; border-radius: 16px; padding: 25px 30px; margin-bottom: 40px; box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25); text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 5px;">🎁 🌶️ 🎁</div>
+            <h2 id="contest-title" style="font-size: 1.5rem; color: #ffffff; margin-bottom: 10px; font-weight: 800;">Конкурс для внимательных кулинаров!</h2>
+            <p id="contest-desc" style="font-size: 1.1rem; line-height: 1.5; max-width: 800px; margin: 0 auto 18px auto; opacity: 0.95;">
+                Первым угадавшим секретные ингредиенты на каждый рецепт — <strong>в подарок приправа «Гамлет»!</strong>
+            </p>
+            <a href="#feedback-section" id="contest-btn" class="btn" style="background-color: #ffffff; color: #b45309; font-weight: 700; font-size: 1rem; padding: 12px 24px; border-radius: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                Написать свой вариант ниже ✍️
+            </a>
+        </div>
+
+        <!-- БЛОК 1: Специи и соусы -->
+        <h2 class="section-title" id="sec-title-1">🧪 1. Фирменные специи и заправки</h2>
+        <div class="grid">
+
+            <!-- Специя "Гамлет" -->
+            <div class="card" id="card-hamlet">
+                <div>
+                    <span class="tag" id="tag-hamlet">Авторская специя • 0 ХЕ</span>
+                    <h3 class="card-title" id="title-hamlet">Приправа «Гамлет»</h3>
+                    <p class="card-desc" id="desc-hamlet"><strong>Ингредиенты:</strong>
+• Сушёный гранулированный чеснок (не порошок!)
+• Сушёный укроп
+• Морская соль
+• Хлопья сушёного чили
+
+<strong>Пищевая ценность (на порцию 1 ч. л.):</strong>
+• Углеводы: ~0.5 г | <strong>0 ХЕ</strong>
+
+<strong>Секрет приготовления:</strong>
+Смешать ингредиенты в равных пропорциях и обязательно дать настояться в закрытой баночке 24 часа. За это время ароматы чеснока и укропа соединяются, а чили раскрывает мягкую пикантность.
+
+<strong>К чему подходит:</strong>
+Идеально для мясных блюд, запеченных кабачков, супов и для создания быстрых соусов.</p>
+                </div>
+                <button class="btn btn-print" id="print-btn-1" onclick="printCard('card-hamlet')">🖨️ PDF / Распечатать</button>
+            </div>
+
+            <!-- Соус "Цезарь-лайт" -->
+            <div class="card" id="card-caesar">
+                <div>
+                    <span class="tag" id="tag-caesar">Низкий ГИ (~0.1 ХЕ)</span>
+                    <h3 class="card-title" id="title-caesar">Соус «Цезарь-лайт»</h3>
+                    <p class="card-desc" id="desc-caesar"><strong>Ингредиенты:</strong>
+• 2% густой греческий йогурт: 3 ст. л.
+• Дижонская горчица: 0.5 ч. л.
+• Свежий чеснок: 1 зубчик (раздавить)
+• Лимонный сок: 0.5 ч. л.
+• Щепотка соли и чёрного перца
+
+<strong>Пищевая ценность (на всю порцию):</strong>
+• Углеводы: ~1.2 г | <strong>0.1 ХЕ</strong>
+
+<strong>Приготовление:</strong>
+Тщательно взбить все ингредиенты вилкой до однородной консистенции. 
+
+Заменяет майонез в салатах, дает насыщенный сливочно-пикантный вкус и практически не подтягивает сахар!</p>
+                </div>
+                <button class="btn btn-print" id="print-btn-2" onclick="printCard('card-caesar')">🖨️ PDF / Распечатать</button>
+            </div>
+
+            <!-- Сливочно-чесночный соус для рыбы -->
+            <div class="card" id="card-fish-sauce">
+                <div>
+                    <span class="tag" id="tag-fish">Для рыбных блюд (~0.3 ХЕ)</span>
+                    <h3 class="card-title" id="title-fish">Сливочно-чесночный соус для рыбы</h3>
+                    <p class="card-desc" id="desc-fish"><strong>Ингредиенты:</strong>
+• Нежирная сметана (10%) или йогурт: 100 г
+• Свежий укроп (мелко нарезанный): 1 пучок
+• Чеснок: 1-2 зубчика
+• Натёртый огурец (отжатый от сока): 1/2 шт.
+• Капля оливкового масла
+
+<strong>Пищевая ценность (на всю порцию 100г):</strong>
+• Углеводы: ~3.5 г | <strong>0.3 ХЕ</strong>
+
+<strong>Приготовление:</strong>
+Смешать сметану с чесноком, укропом и огурцом. Идеально дополняет рыбные котлеты с брокколи и запеченную горбушу.</p>
+                </div>
+                <button class="btn btn-print" id="print-btn-3" onclick="printCard('card-fish-sauce')">🖨️ PDF / Распечатать</button>
+            </div>
+
+        </div>
+
+        <!-- БЛОК 2: Видео-ролики -->
+        <h2 class="section-title" id="sec-title-2">🎥 2. Секреты кухни и история из жизни</h2>
+        <div class="video-grid">
+
+            <!-- Видеоплеер 1 -->
+            <div class="video-card">
+                <video controls style="width:100%; height:260px; object-fit:cover; background:#000;">
+                    <source src="sauces-secret.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <div class="video-content">
+                    <span class="tag" id="tag-v1">Видео №1 (3–5 мин)</span>
+                    <h3 class="card-title" id="title-v1">Секреты приготовления соуса и специи</h3>
+                    <p class="card-desc" id="desc-v1">Показываю процесс замешивания «Гамлета» и правильное взбивание соуса. Объясняю, почему важен именно гранулированный чеснок и как полезные жиры в заправке помогают сдерживать прыжки сахара.</p>
+                </div>
+            </div>
+
+            <!-- Видеоплеер 2 -->
+            <div class="video-card">
+                <video controls style="width:100%; height:260px; object-fit:cover; background:#000;">
+                    <source src="life-story.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                <div class="video-content">
+                    <span class="tag" id="tag-v2">Видео №2 (5–7 мин)</span>
+                    <h3 class="card-title" id="title-v2">Разговор на кухне: Как держать сахар в норме</h3>
+                    <p class="card-desc" id="desc-v2">Душевный разговор за чашкой чая. Мой опыт, дисциплина, скандинавская ходьба и подход к жизни: «Диабет — это не ограничение, а новый кулинарный азарт!»</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- БЛОК 3: Интерактивный уголок читателя -->
+        <h2 class="section-title" id="sec-title-3">💬 3. Интерактивный уголок читателя</h2>
+        <div class="feedback-section" id="feedback-section">
+            <h3 style="margin-bottom: 10px; color: var(--primary);" id="feedback-title">Поделитесь впечатлениями или задайте вопрос</h3>
+            <p style="color: var(--text-desc); margin-bottom: 20px;" id="feedback-desc">Попробовали специю «Гамлет» или хотите предложить свой вариант полезной заправки? Напишите мне!</p>
+            
+            <form action="mailto:rezeptevonfedor@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="userName" id="lbl-name">Ваше имя:</label>
+                    <input type="text" name="Имя" id="userName" required placeholder="Как к вам обращаться?">
+                </div>
+                <div class="form-group">
+                    <label for="userEmail" id="lbl-email">Ваш Email (для ответа):</label>
+                    <input type="email" name="Email" id="userEmail" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="userMessage" id="lbl-msg">Ваш отзыв или вопрос:</label>
+                    <textarea name="Сообщение" id="userMessage" rows="4" required placeholder="Напишите ваш комментарий или вариант ответа..."></textarea>
+                </div>
+                <button type="submit" class="btn" id="btn-submit">Отправить Фёдору ✉️</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <p id="footer-text">&copy; 2026 Записки на кухне от Фёдора. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '☀️';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '🌙';
+            }
+        }
+
+        function printCard(cardId) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('printable-content'));
+            const target = document.getElementById(cardId);
+            if (target) {
+                target.classList.add('printable-content');
+                window.print();
+            }
+        }
+
+        const translations = {
+            ru: {
+                logoText: "🍳 Записки от Фёдора",
+                navPage1: "← Стр. 1",
+                navPage2: "← Меню на неделю",
+                heroTitle: "Фирменные специи, соусы и секреты здоровья",
+                heroDesc: "Вкусная еда без лишнего сахара, маленькие кулинарные хитрости и личный опыт",
+                contestTitle: "Конкурс для внимательных кулинаров!",
+                contestDesc: "Первым угадавшим секретные ингредиенты на каждый рецепт — <strong>в подарок приправа «Гамлет»!</strong>",
+                contestBtn: "Написать свой вариант ниже ✍️",
+                secTitle1: "🧪 1. Фирменные специи и заправки",
+                secTitle2: "🎥 2. Секреты кухни и история из жизни",
+                secTitle3: "💬 3. Интерактивный уголок читателя",
+                tagHamlet: "Авторская специя • 0 ХЕ",
+                titleHamlet: "Приправа «Гамлет»",
+                descHamlet: "<strong>Ингредиенты:</strong>\n• Сушёный гранулированный чеснок (не порошок!)\n• Сушёный укроп\n• Морская соль\n• Хлопья сушёного чили\n\n<strong>Пищевая ценность (на порцию 1 ч. л.):</strong>\n• Углеводы: ~0.5 г | <strong>0 ХЕ</strong>\n\n<strong>Секрет приготовления:</strong>\nСмешать ингредиенты в равных пропорциях и обязательно дать настояться в закрытой баночке 24 часа. За это время ароматы чеснока и укропа соединяются, а чили раскрывает мягкую пикантность.\n\n<strong>К чему подходит:</strong>\nИдеально для мясных блюд, запеченных кабачков, супов и для создания быстрых соусов.",
+                tagCaesar: "Низкий ГИ (~0.1 ХЕ)",
+                titleCaesar: "Соус «Цезарь-лайт»",
+                descCaesar: "<strong>Ингредиенты:</strong>\n• 2% густой греческий йогурт: 3 ст. л.\n• Дижонская горчица: 0.5 ч. л.\n• Свежий чеснок: 1 зубчик (раздавить)\n• Лимонный сок: 0.5 ч. л.\n• Щепотка соли и чёрного перца\n\n<strong>Пищевая ценность (на всю порцию):</strong>\n• Углеводы: ~1.2 г | <strong>0.1 ХЕ</strong>\n\n<strong>Приготовление:</strong>\nТщательно взбить все ингредиенты вилкой до однородной консистенции.\n\nЗаменяет майонез в салатах, дает насыщенный сливочно-пикантный вкус и практически не подтягивает сахар!",
+                tagFish: "Для рыбных блюд (~0.3 ХЕ)",
+                titleFish: "Сливочно-чесночный соус для рыбы",
+                descFish: "<strong>Ингредиенты:</strong>\n• Нежирная сметана (10%) или йогурт: 100 г\n• Свежий укроп (мелко нарезанный): 1 пучок\n• Чеснок: 1-2 зубчика\n• Натёртый огурец (отжатый от сока): 1/2 шт.\n• Капля оливкового масла\n\n<strong>Пищевая ценность (на всю порцию 100г):</strong>\n• Углеводы: ~3.5 г | <strong>0.3 ХЕ</strong>\n\n<strong>Приготовление:</strong>\nСмешать сметану с чесноком, укропом и огурцом. Идеально дополняет рыбные котлеты с брокколи и запеченную горбушу.",
+                printBtn: "🖨️ PDF / Распечатать",
+                tagV1: "Видео №1 (3–5 мин)",
+                titleV1: "Секреты приготовления соуса и специи",
+                descV1: "Показываю процесс замешивания «Гамлета» и правильное взбивание соуса. Объясняю, почему важен именно гранулированный чеснок и как полезные жиры в заправке помогают сдерживать прыжки сахара.",
+                tagV2: "Видео №2 (5–7 мин)",
+                titleV2: "Разговор на кухне: Как держать сахар в норме",
+                descV2: "Душевный разговор за чашкой чая. Мой опыт, дисциплина, скандинавская ходьба и подход к жизни: «Диабет — это не ограничение, а новый кулинарный азарт!»",
+                feedbackTitle: "Поделитесь впечатлениями или задайте вопрос",
+                feedbackDesc: "Попробовали специю «Гамлет» или хотите предложить свой вариант полезной заправки? Напишите мне!",
+                lblName: "Ваше имя:",
+                lblEmail: "Ваш Email (для ответа):",
+                lblMsg: "Ваш отзыв или вопрос:",
+                btnSubmit: "Отправить Фёдору ✉️",
+                footerText: "© 2026 Записки на кухне от Фёдора. Все права защищены."
+            },
+            de: {
+                logoText: "🍳 Födors Notizen",
+                navPage1: "← Seite 1",
+                navPage2: "← Wochenmenü",
+                heroTitle: "Eigene Gewürze, Soßen & Gesundheitsgeheimnisse",
+                heroDesc: "Leckeres Essen ohne лишний Zucker, kleine Kulinarik-Tricks und persönliche Erfahrungen",
+                contestTitle: "Gewinnspiel für aufmerksame Köche!",
+                contestDesc: "Die Ersten, die die Geheimzutaten für jedes Rezept erraten, erhalten die <strong>Gewürzmischung „Hamlet“ als Geschenk!</strong>",
+                contestBtn: "Ihren Tipp unten schreiben ✍️",
+                secTitle1: "🧪 1. Spezial-Gewürze und Dressings",
+                secTitle2: "🎥 2. Küchengeheimnisse & Lebensgeschichte",
+                secTitle3: "💬 3. Interaktive Leserecke",
+                tagHamlet: "Spezial-Gewürz • 0 BE",
+                titleHamlet: "Gewürzmischung „Hamlet“",
+                descHamlet: "<strong>Zutaten:</strong>\n• Getrockneter granulierter Knoblauch (kein Pulver!)\n• Getrockneter Dill\n• Meersalz\n• Getrocknete Chili-Flocken\n\n<strong>Nährwerte (pro Portion 1 TL):</strong>\n• Kohlenhydrate: ~0.5 g | <strong>0 BE</strong>\n\n<strong>Zubereitungstrick:</strong>\nZutaten zu gleichen Teilen mischen und 24 Stunden in einem verschlossenen Glas ziehen lassen. So verbinden sich die Aromen perfekt.\n\n<strong>Passend zu:</strong>\nIdeal für Fleischgerichte, gebackene Zucchini, Suppen und schnelle Soßen.",
+                tagCaesar: "Niedriger GI (~0.1 BE)",
+                titleCaesar: "Dressing „Caesar-Lite“",
+                descCaesar: "<strong>Zutaten:</strong>\n• 2% griechischer Joghurt: 3 EL\n• Dijon-Senf: 0.5 TL\n• Frischer Knoblauch: 1 Zehe (zerdrückt)\n• Zitronensaft: 0.5 TL\n• Eine Prise Salz und schwarzer Pfeffer\n\n<strong>Nährwerte (pro Portion):</strong>\n• Kohlenhydrate: ~1.2 g | <strong>0.1 BE</strong>\n\n<strong>Zubereitung:</strong>\nAlle Zutaten mit einer Gabel gut verrühren.\n\nErsetzt Mayonnaise in Salaten, schmeckt cremig-pikant und enthält kaum Kohlenhydrate!",
+                tagFish: "Für Fischgerichte (~0.3 BE)",
+                titleFish: "Cremiges Knoblauch-Dressing für Fisch",
+                descFish: "<strong>Zutaten:</strong>\n• Magerer Schmand (10%) oder Joghurt: 100 g\n• Frischer Dill (fein gehackt): 1 Bund\n• Knoblauch: 1-2 Zehen\n• Geriebene Gurke (отжатая): 1/2 Stk.\n• Ein Tropfen Olivenöl\n\n<strong>Nährwerte (pro Portion 100g):</strong>\n• Kohlenhydrate: ~3.5 g | <strong>0.3 BE</strong>\n\n<strong>Zubereitung:</strong>\nSchmand mit Knoblauch, Dill und Gurke verrühren. Passt perfekt zu Fischfrikadellen mit Brokkoli.",
+                printBtn: "🖨️ PDF / Drucken",
+                tagV1: "Video Nr. 1 (3–5 Min)",
+                titleV1: "Geheimnisse der Soßen- & Gewürzzubereitung",
+                descV1: "Ich zeige das Mischen von „Hamlet“ und das richtige Aufschlagen der Soße. Warum granulierter Knoblauch wichtig ist und wie gesunde Fette Blutzuckerspitzen bremsen.",
+                tagV2: "Video Nr. 2 (5–7 Min)",
+                titleV2: "Küchengespräch: Blutzucker im Griff behalten",
+                descV2: "Gemütliches Gespräch bei einer Tasse Tee. Meine Erfahrungen, Disziplin, Nordic Walking und die Einstellung: „Diabetes ist keine Einschränkung, sondern neue kulinarische Begeisterung!“",
+                feedbackTitle: "Teilen Sie Ihre Eindrücke oder stellen Sie eine Frage",
+                feedbackDesc: "Haben Sie das Gewürz „Hamlet“ probiert oder möchten Sie Ihr eigenes Rezept teilen? Schreiben Sie mir!",
+                lblName: "Ihr Name:",
+                lblEmail: "Ihre E-Mail (für Rückantwort):",
+                lblMsg: "Ihre Nachricht oder Ihr Rezept:",
+                btnSubmit: "An Fedor senden ✉️",
+                footerText: "© 2026 Födors Notizen aus der Küche. Alle Rechte vorbehalten."
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+
+            document.getElementById('logo-text').innerText = t.logoText;
+            document.getElementById('nav-page1').innerText = t.navPage1;
+            document.getElementById('nav-page2').innerText = t.navPage2;
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            
+            document.getElementById('contest-title').innerText = t.contestTitle;
+            document.getElementById('contest-desc').innerHTML = t.contestDesc;
+            document.getElementById('contest-btn').innerText = t.contestBtn;
+
+            document.getElementById('sec-title-1').innerText = t.secTitle1;
+            document.getElementById('sec-title-2').innerText = t.secTitle2;
+            document.getElementById('sec-title-3').innerText = t.secTitle3;
+
+            document.getElementById('tag-hamlet').innerText = t.tagHamlet;
+            document.getElementById('title-hamlet').innerText = t.titleHamlet;
+            document.getElementById('desc-hamlet').innerHTML = t.descHamlet.replace(/\n/g, '<br>');
+
+            document.getElementById('tag-caesar').innerText = t.tagCaesar;
+            document.getElementById('title-caesar').innerText = t.titleCaesar;
+            document.getElementById('desc-caesar').innerHTML = t.descCaesar.replace(/\n/g, '<br>');
+
+            document.getElementById('tag-fish').innerText = t.tagFish;
+            document.getElementById('title-fish').innerText = t.titleFish;
+            document.getElementById('desc-fish').innerHTML = t.descFish.replace(/\n/g, '<br>');
+
+            document.getElementById('print-btn-1').innerText = t.printBtn;
+            document.getElementById('print-btn-2').innerText = t.printBtn;
+            document.getElementById('print-btn-3').innerText = t.printBtn;
+
+            document.getElementById('tag-v1').innerText = t.tagV1;
+            document.getElementById('title-v1').innerText = t.titleV1;
+            document.getElementById('desc-v1').innerText = t.descV1;
+
+            document.getElementById('tag-v2').innerText = t.tagV2;
+            document.getElementById('title-v2').innerText = t.titleV2;
+            document.getElementById('desc-v2').innerText = t.descV2;
+
+            document.getElementById('feedback-title').innerText = t.feedbackTitle;
+            document.getElementById('feedback-desc').innerText = t.feedbackDesc;
+            document.getElementById('lbl-name').innerText = t.lblName;
+            document.getElementById('lbl-email').innerText = t.lblEmail;
+            document.getElementById('lbl-msg').innerText = t.lblMsg;
+            document.getElementById('btn-submit').innerText = t.btnSubmit;
+
+            document.getElementById('footer-text').innerText = t.footerText;
+        }
+    </script>
+</body>
+</html>
